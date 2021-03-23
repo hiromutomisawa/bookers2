@@ -4,42 +4,69 @@
     <title>Booker2</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
-  <header>
-    <% if user_signed_in? %>
-    <h1>Bookers</h1>
-      <li>
-        <%= link_to 'Home', root_path %>
-      </li>
-      <li>
-        User_show
-      </li>
-      <li>
-        Books_show
-      </li>
-      <li>
-        <%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
-      </li>
-    <% else %>
-    <h1>Bookers</h1>
-      <li>
-        <%= link_to 'Home', root_path %>
-      </li>
-      <li>
-        <%= link_to 'About',home_about_path %>
-      </li>
-      <li>
-        <%= link_to "sign up", new_user_registration_path %>
-      </li>
-      <li>
-        <%= link_to "login", new_user_session_path %>
-      </li>
-    <% end %>
-  </header>
 
-  <%= yield %>
+   <body class="d-flex flex-column vh-100">
+    <header class="shadow-sm bg-dark ">
+      <nav class="navbar navbar-expand-lg navbar-light">
+        <div class="container">
+          <a class="navbar-brand p-3 text-white" href="/">Bookers</a>
+          <button class="navbar-toggler " type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarNavDropdown">
+            <ul class="navbar-nav ml-auto">
+            <% if user_signed_in? %>
+            <li class="nav-item">
+              <%= link_to "Home", root_path, class: 'nav-link text-white' %>
+            </li>
+            <li class="nav-item">
+              Users
+            </li>
+            <li class="nav-item">
+              <%= link_to 'Books', books_path(current_user.id), class: 'nav-link text-white' %>
+            </li>
+            <li class="nav-item">
+              <%= link_to "logout", destroy_user_session_path, class: 'nav-link text-white',method: :delete %>
+            </li>
+            <% else %>
+            <li class="nav-item">
+              <%= link_to "Home", root_path, class: 'nav-link text-white' %>
+            </li>
+            <li class="nav-item">
+              <%= link_to 'About',home_about_path, class: 'nav-link text-white'%>
+            </li>
+            <li class="nav-item">
+              <%= link_to "sign up", new_user_registration_path, class: 'nav-link text-white' %>
+            </li>
+            <li class="nav-item">
+              <%= link_to "login", new_user_session_path, class: 'nav-link text-white' %>
+            </li>
+            <% end %>
+            </ul>
+          </div>
+        </div>
+      </nav>
+    </header>
+    <main class="mb-auto">
+    <%= yield %>
+    </main>
+    <footer class="bg-white text-black pt-5 pb-4">
+      <div class="container">
+        <div class="row no-gutters">
+          <div class="col-md-4">
+            <p>CopyRight Infratop.inc</p>
+          </div>
+          <div class="col-md-8">
+          </div>
+        </div>
+      </div>
+    </footer>
+  </body>
+
 </html>
