@@ -1,8 +1,9 @@
+
 <% @books.each do |book| %>
 <div class="post-body">
-  <%= %>
   <p>Titel：<%= @book.title %></p>
   <p>Opinion：<%= @book.body %></p>
+</div>
 
  <% if @book.user == current_user %>
     <%= link_to "edit", book_path(@book) %>
