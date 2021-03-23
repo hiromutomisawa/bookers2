@@ -1,0 +1,12 @@
+<div class="post-body">
+  <%= attachment_image_tag @book, :image %>
+  <p>Titel：<%= @book.title %></p>
+  <p>Opinion：<%= @book.body %></p>
+
+<!--削除ボタン-->
+ <% if @book.user == current_user %>
+    <%= link_to "Destroy", book_path(@book), method: :delete %>
+ <% end %>
+
+ <!--editボタン-->
+

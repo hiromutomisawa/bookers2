@@ -9,7 +9,37 @@
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
-  <body>
-    <%= yield %>
-  </body>
+  <header>
+    <% if user_signed_in? %>
+    <h1>Bookers</h1>
+      <li>
+        <%= link_to 'Home', root_path %>
+      </li>
+      <li>
+        User_show
+      </li>
+      <li>
+        Books_show
+      </li>
+      <li>
+        <%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
+      </li>
+    <% else %>
+    <h1>Bookers</h1>
+      <li>
+        <%= link_to 'Home', root_path %>
+      </li>
+      <li>
+        <%= link_to 'About',home_about_path %>
+      </li>
+      <li>
+        <%= link_to "sign up", new_user_registration_path %>
+      </li>
+      <li>
+        <%= link_to "login", new_user_session_path %>
+      </li>
+    <% end %>
+  </header>
+
+  <%= yield %>
 </html>
