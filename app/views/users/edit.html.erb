@@ -2,8 +2,11 @@
 <%= form_with model:@user, local:true do |f| %>
   <label for="inputName">Name</label><br>
   <%= f.text_field :name, autofocus: true, id:"inputName"%><br>
-  <label for="inputimage">Image</label><br>
-  <%= f.attachment_field :profire_image, autofocus: true, id:"inputimage" %><br>
+
+  <%= attachment_image_tag @user, :profile_image, :fill,60,60, fallback:"no_image.jpg"%><br>
+  <label for="inputImage">Image</label><br>
+  <%= f.attachment_field :profile_image %><br>
+
   <label for="inputintroduction">Introduction</label><br>
   <%= f.text_area :introduction, autofocus: true, id:"inpuintroduction" %><br>
   <%= f.submit "Update User" %>
