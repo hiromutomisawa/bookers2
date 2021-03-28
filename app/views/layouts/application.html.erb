@@ -23,29 +23,29 @@
             <ul class="navbar-nav ml-auto">
             <% if user_signed_in? %>
             <li class="nav-item">
-              <%= link_to "Home", user_path(current_user.id), class: 'nav-link text-white' %>
+              <%= link_to "Home", user_path(current_user.id), class: 'nav-link text-white fas fa-home' %>
             </li>
             <li class="nav-item">
-              <%= link_to "Users", users_path, class: 'nav-link text-white' %>
+              <%= link_to "Users", users_path, class: 'nav-link text-white fas fa-users' %>
             </li>
             <li class="nav-item">
-              <%= link_to "Books", books_path, class: 'nav-link text-white' %>
+              <%= link_to "Books", books_path, class: 'nav-link text-white fas fa-book-open' %>
             </li>
             <li class="nav-item">
-              <%= link_to "logout", destroy_user_session_path, class: 'nav-link text-white',method: :delete %>
+              <%= link_to "logout", destroy_user_session_path, class: 'nav-link text-white fas fa-sign-out-alt',method: :delete %>
             </li>
             <% else %>
             <li class="nav-item">
-              <%= link_to "Home", root_path, class: 'nav-link text-white' %>
+              <%= link_to "Home", root_path, class: 'nav-link text-white fas fa-home' %>
             </li>
             <li class="nav-item">
-              <%= link_to 'About',home_about_path, class: 'nav-link text-white'%>
+              <%= link_to 'About',home_about_path, class: 'nav-link text-white fas fa-link'%>
             </li>
             <li class="nav-item">
-              <%= link_to "sign up", new_user_registration_path, class: 'nav-link text-white' %>
+              <%= link_to "sign up", new_user_registration_path, class: 'nav-link text-white fas fa-user-plus' %>
             </li>
             <li class="nav-item">
-              <%= link_to "login", new_user_session_path, class: 'nav-link text-white' %>
+              <%= link_to "login", new_user_session_path, class: 'nav-link text-white fas fa-sign-in-alt' %>
             </li>
             <% end %>
             </ul>
@@ -54,6 +54,9 @@
       </nav>
     </header>
     <main class="mb-auto">
+      <% flash.each do |key, value| %>
+      <%= content_tag(:div, value, class: "#{key}") %>
+      <% end %>
     <%= yield %>
     </main>
     <footer>
