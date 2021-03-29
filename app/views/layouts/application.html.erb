@@ -54,8 +54,8 @@
       </nav>
     </header>
     <main class="mb-auto">
-      <% flash.each do |key, value| %>
-      <%= content_tag(:div, value, class: "#{key}") %>
+      <% if notice %>
+　  　  <p><%= notice %></p>
       <% end %>
     <%= yield %>
     </main>
