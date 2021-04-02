@@ -19,6 +19,7 @@
               format: 'jpeg', fallback: "no_image.jpg"),user_path(f.user.id) %></td>
               <td><%= link_to f.title, book_path(f.id) %></td>
               <td><%= f.body %></td>
+               <td>コメント数:<%= @book.book_comments.count %></td>
             </tr>
             <% end %>
           </tbody>
