@@ -2,9 +2,6 @@ class UsersController < ApplicationController
   before_action :authenticate_user!
   before_action :correct_user, only: [:edit, :update]
 
-  def create
-  end
-
   def index
     @user = current_user
     @users = User.all
@@ -16,10 +13,6 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     @book = Book.new
     @books = @user.books
-  end
-
-  def edit
-    @user = User.find(params[:id])
   end
 
   def update
