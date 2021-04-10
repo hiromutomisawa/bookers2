@@ -13,13 +13,20 @@
             </tr>
           </thead>
           <tbody>
-            <% @books.each do |f|%>
+            <% @books.each do |book|%>
             <tr>
-              <td><%= link_to attachment_image_tag(f.user, :profile_image, :fill, 50, 50,
-              format: 'jpeg', fallback: "no_image.jpg"),user_path(f.user.id) %></td>
-              <td><%= link_to f.title, book_path(f.id) %></td>
-              <td><%= f.body %></td>
-               <td>コメント数:<%= f.book_comments.count %></td>
+              <td><%= link_to attachment_image_tag(book.user, :profile_image, :fill, 50, 50,
+              format: 'jpeg', fallback: "no_image.jpg"),user_path(book.user.id) %></td>
+              <td><%= link_to book.title, book_path(book.id) %></td>
+              <td><%= book.body %></td>
+              <td>
+                <% if book.favorited_by?(current_user) %>
+                  <%= link_to book.favorites.count, book_favorites_path(book), method: :delete, class: "fas fa-heart heart_red" %>
+                <% else %>
+                  <%= link_to book.favorites.count, book_favorites_path(book), method: :post, class: "fas fa-heart heart_blue" %>
+                <% end %>
+              </td>
+              <td>コメント数:<%= book.book_comments.count %></td>
             </tr>
             <% end %>
           </tbody>
